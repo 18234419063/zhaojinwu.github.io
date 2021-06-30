@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhaojinwu888.github.io/"/>
-  <updated>2021-06-30T06:12:58.907Z</updated>
+  <updated>2021-06-30T08:56:59.792Z</updated>
   <id>http://zhaojinwu888.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>走进JS</title>
-    <link href="http://zhaojinwu888.github.io/2019/10/25/zhengze/"/>
-    <id>http://zhaojinwu888.github.io/2019/10/25/zhengze/</id>
-    <published>2019-10-25T08:39:20.000Z</published>
-    <updated>2021-06-30T06:12:58.907Z</updated>
+    <link href="http://zhaojinwu888.github.io/2019/11/15/zhengze/"/>
+    <id>http://zhaojinwu888.github.io/2019/11/15/zhengze/</id>
+    <published>2019-11-15T08:39:20.000Z</published>
+    <updated>2021-06-30T08:56:59.792Z</updated>
     
     <summary type="html">
     
@@ -96,6 +96,36 @@
     </summary>
     
       <category term="CSS部分" scheme="http://zhaojinwu888.github.io/categories/CSS%E9%83%A8%E5%88%86/"/>
+    
+    
+      <category term="Hexo" scheme="http://zhaojinwu888.github.io/tags/Hexo/"/>
+    
+      <category term="Github" scheme="http://zhaojinwu888.github.io/tags/Github/"/>
+    
+      <category term="博客" scheme="http://zhaojinwu888.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Promise</title>
+    <link href="http://zhaojinwu888.github.io/2019/09/28/promise/"/>
+    <id>http://zhaojinwu888.github.io/2019/09/28/promise/</id>
+    <published>2019-09-28T08:39:20.000Z</published>
+    <updated>2021-06-30T08:51:51.685Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;十二-异步编程之Promise-async-await&quot;&gt;&lt;a href=&quot;#十二-异步编程之Promise-async-await&quot; class=&quot;headerlink&quot; title=&quot;十二. 异步编程之Promise/async/await&quot;&gt;&lt;/a&gt;十二.
+        
+      
+    
+    </summary>
+    
+      <category term="JS部分" scheme="http://zhaojinwu888.github.io/categories/JS%E9%83%A8%E5%88%86/"/>
     
     
       <category term="Hexo" scheme="http://zhaojinwu888.github.io/tags/Hexo/"/>
