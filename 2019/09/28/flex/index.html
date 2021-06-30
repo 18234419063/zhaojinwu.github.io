@@ -6,10 +6,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="留言板, Zhao Jinwu, School of software, North  University of China">
+    <meta name="keywords" content="grid布局, Zhao Jinwu, School of software, North  University of China">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
-    <meta name="description" content="留言板 | 赵晋伍的博客">
+    <meta name="description" content="flex布局一、flex container的属性1. flex items
+默认沿着主轴方向从 main start 到main end方向 依次排列
+
+2. justify-content
+决定了flex item在main axis上">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +21,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>留言板 | 赵晋伍的博客</title>
+    <title>grid布局 | 赵晋伍的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -599,54 +603,335 @@
 
 </header>
 
-        <!-- shw2018 洪卫  modify 2019.08.15-->
-<div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                <!-- 
-                    赵晋伍的博客
-                 -->
-                
-                    留言板
-                
-            </div>
-
-            <div class="description center-align">
-                
-                    <!-- 中北大学 | 软件工程 | 前端开发 -->
-                    <span id="jinrishici-sentence">正在加载今日诗词...</span>
-                
-            </div>
-            
-            
-        </div>
-    </div>
-</div>
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
 </script>
 
 
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        grid布局
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<main class="content">
-    <div id="aboutme" class="container contact-container">
-            <div class="card">
-                    <div class="card-content">
-                            <div id="articleContent" data-aos="fade-up">
-                                    <h2 id="畅所欲言"><a href="#畅所欲言" class="headerlink" title="畅所欲言"></a>畅所欲言</h2><hr>
-<p>在这里可以留下你的足迹，欢迎在下方留言，欢迎交换友链，一起交流学习！</p>
-<h2 id="友链"><a href="#友链" class="headerlink" title="友链"></a>友链</h2><hr>
-<p>赵晋伍の友链信息</p>
-<p>博客名称: 赵晋伍の博客</p>
-<p>博客网址: <a href="https://zhaojinwu888.github.io">https://zhaojinwu888.github.io</a></p>
-<p>博客头像: <a href="http://zhaojinwu888.github.io">http://zhaojinwu888.github.io</a></p>
-<p>博客介绍: ICPC  PVer！</p>
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- shw2018 洪卫  modify 2019.08.15-->
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Hexo/" target="_blank">
+                                <span class="chip bg-color">Hexo</span>
+                            </a>
+                        
+                            <a href="/tags/Github/" target="_blank">
+                                <span class="chip bg-color">Github</span>
+                            </a>
+                        
+                            <a href="/tags/博客/" target="_blank">
+                                <span class="chip bg-color">博客</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/CSS部分/" class="post-category" target="_blank">
+                                CSS部分
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-09-28
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        赵晋伍
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        1.4k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        5 分
+                    </div>
+                    
+                
+                
+                
+                        <span id="busuanzi_container_site_pv" style='display:none'></span>
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv" ></span>
+    
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><h1 id="一、flex-container的属性"><a href="#一、flex-container的属性" class="headerlink" title="一、flex container的属性"></a>一、flex container的属性</h1><h2 id="1-flex-items"><a href="#1-flex-items" class="headerlink" title="1. flex items"></a>1. flex items</h2><ul>
+<li>默认沿着主轴方向从 main start 到main end方向 依次排列</li>
+</ul>
+<h2 id="2-justify-content"><a href="#2-justify-content" class="headerlink" title="2. justify-content"></a>2. justify-content</h2><ul>
+<li>决定了flex item在main axis上的对齐方式</li>
+</ul>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token property">justify-content</span><span class="token punctuation">:</span> flex-start<span class="token punctuation">;</span> // 默认值 与main start对齐
+<span class="token property">justify-content</span><span class="token punctuation">:</span> flex-end<span class="token punctuation">;</span> // 与main end对齐
+<span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> // 居中对齐
+<span class="token property">justify-content</span><span class="token punctuation">:</span> space-between<span class="token punctuation">;</span> // space空间的意思 flex item 靠main start 和main end两边 剩下的<span class="token number">0</span>或多个平均在中间显示
+<span class="token property">justify-content</span><span class="token punctuation">:</span> space-around<span class="token punctuation">;</span> // flex item 距离main start， main end两边的间隔 等于 flex item之间的间隔的一半
+<span class="token property">justify-content</span><span class="token punctuation">:</span> space-evenly<span class="token punctuation">;</span> // flex item均匀的间隔<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="3-flex-direction"><a href="#3-flex-direction" class="headerlink" title="3. flex-direction"></a>3. flex-direction</h2><ul>
+<li>决定了主轴的方向</li>
+</ul>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token property">flex-direction</span><span class="token punctuation">:</span> row<span class="token punctuation">;</span> // 默认值row 水平方向从左到右
+<span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span> // 垂直方向从上到下
+<span class="token property">flex-direction</span><span class="token punctuation">:</span> row-reverse<span class="token punctuation">;</span> // 水平方向从右到左
+<span class="token property">flex-direction</span><span class="token punctuation">:</span> column-reverse<span class="token punctuation">;</span> // 垂直方向从下到上 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="4-align-items"><a href="#4-align-items" class="headerlink" title="4. align-items"></a>4. align-items</h2><ul>
+<li>决定了flex items在cross axis上的对齐方式</li>
+</ul>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token property">align-items</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span> // 默认值 在弹性布局在和stretch（拉紧）效果一样 
+<span class="token property">aligin-items</span><span class="token punctuation">:</span> stretch<span class="token punctuation">;</span> // 当flex items在cross axis方向的size为auto时，会自动拉伸至填充flexcontainer类似一柱擎天效果。其实就是不设置flex item的高度会引起这个效果
+<span class="token property">align-items</span><span class="token punctuation">:</span> flex-start<span class="token punctuation">;</span> // 与cross start对齐
+<span class="token property">align-items</span><span class="token punctuation">:</span> flex-end<span class="token punctuation">;</span> // 与cross end对齐
+<span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> // cross中心点对齐
+<span class="token property">align-items</span><span class="token punctuation">:</span> baseline<span class="token punctuation">;</span> // 与基准线对齐<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="5-flex-wrap"><a href="#5-flex-wrap" class="headerlink" title="5. flex-wrap"></a>5. flex-wrap</h2><ul>
+<li>决定了flex container是单行还是多行</li>
+</ul>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token comment" spellcheck="true">/* 默认情况下，所有的flex items都会在同一行显示 */</span>
+<span class="token property">flex-wrap</span><span class="token punctuation">:</span> no-wrap<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 默认值no-wrap 单行 */</span>
+<span class="token property">flex-wrap</span><span class="token punctuation">:</span> wrap<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 多行 */</span>
+<span class="token property">flex-wrap</span><span class="token punctuation">:</span> wrap-reverse<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 多行 对比 wrap,cross start 与cross end相反 */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="6-flex-flow"><a href="#6-flex-flow" class="headerlink" title="6. flex-flow"></a>6. flex-flow</h2><ul>
+<li>flex-direction || flex-wrap的缩写</li>
+</ul>
+<pre class="line-numbers language-css"><code class="language-css">可以省略，顺序任意
+<span class="token property">flex-flow</span><span class="token punctuation">:</span> flex-end wrap<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="7-align-content"><a href="#7-align-content" class="headerlink" title="7. align-content"></a>7. align-content</h2><ul>
+<li>决定多行flex items在cross axis 上的对齐方式用法与justifiy-content类似</li>
+</ul>
+<pre class="line-numbers language-css"><code class="language-css"><span class="token property">align-content</span><span class="token punctuation">:</span> stretch<span class="token punctuation">;</span> // <span class="token punctuation">(</span>默认值<span class="token punctuation">)</span> 与align-items的stretch类似
+<span class="token property">align-content</span><span class="token punctuation">:</span> flex-start<span class="token punctuation">;</span> // 与cross start对齐
+<span class="token property">align-content</span><span class="token punctuation">:</span> flex-end<span class="token punctuation">;</span> // 与cross end对齐 相当于沿着cross axis轴 平移到cross start
+<span class="token property">align-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> // 居中对齐
+<span class="token property">align-content</span><span class="token punctuation">:</span> space-between<span class="token punctuation">;</span> // space空间的意思 flex item 靠cross start 和cross end两边 剩下的<span class="token number">0</span>或多个平均在中间显示
+<span class="token property">align-content</span><span class="token punctuation">:</span> space-around<span class="token punctuation">;</span> // flex item cross start， cross end两边的间隔 等于 flex item之间的间隔的一半
+<span class="token property">align-content</span><span class="token punctuation">:</span> space-evenly<span class="token punctuation">;</span> // flex item均匀的间隔<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="8-开启flex布局"><a href="#8-开启flex布局" class="headerlink" title="8. 开启flex布局"></a>8. 开启flex布局</h2><pre class="line-numbers language-css"><code class="language-css"><span class="token number">1.</span> <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span> // 开启之后是块级元素
+<span class="token number">2.</span> <span class="token property">display</span><span class="token punctuation">:</span> inline-flex<span class="token punctuation">;</span> // 开启之后是行内元素<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="二、flex-item的属性"><a href="#二、flex-item的属性" class="headerlink" title="二、flex item的属性"></a>二、flex item的属性</h1><h2 id="1-order"><a href="#1-order" class="headerlink" title="1. order"></a>1. order</h2><ul>
+<li>order 决定了 flex items 的排布顺序</li>
+<li>默认值是 0 </li>
+<li>可以设置任意整数（正整数、负整数、0），值越小就越排在前面</li>
+</ul>
+<h2 id="2-align-self"><a href="#2-align-self" class="headerlink" title="2. align-self"></a>2. align-self</h2><ul>
+<li>可以通过 <strong>aligin-self</strong> 覆盖 <strong>flex container</strong>设置的align-items属性</li>
+<li>auto(默认值) 遵循 <strong>flex container</strong>设置的align-items属性</li>
+<li>stretch、flex-start、flex-end、center、baseline、效果跟align-items一致，只不够是单独设置某一个item的排列方式</li>
+</ul>
+<h2 id="3-flex-grow"><a href="#3-flex-grow" class="headerlink" title="3. flex-grow"></a>3. flex-grow</h2><ul>
+<li>grow 生长、成长的意思</li>
+<li>flex-grow决定了<strong>flex items</strong>如何扩展</li>
+<li>可以设置任意非负数字（正小数、正整数、0），默认值是0</li>
+<li>当flex container在main axis方向上有剩余size时后，flex-grow属性才会生效</li>
+<li>如果所有flex items的flex-grow总和sum 超过 1，每个flex item扩展 size 为 *<em>flex container *</em> 剩余的size / sum * flex-grow 其实就是平分暂几份</li>
+<li>如果所有flex items的flex-grow总和sum 小于 1，每个flex item扩展 size 为  *<em>flex container *</em> 剩余的size * flex-grow</li>
+<li>flex items 扩展后的最终size不能超过 max-width \ max-height</li>
+</ul>
+<h2 id="4-flex-shrink"><a href="#4-flex-shrink" class="headerlink" title="4. flex-shrink"></a>4. flex-shrink</h2><ul>
+<li>shrink 收缩的意思</li>
+<li>flex-shrink决定了flex items 如何收缩</li>
+<li>可以设置任意非负数字（正小数、正整数、0），默认值是1</li>
+<li>当flex items 在main axis方向上超过了flexcontainer的size， flex-shrink属性才会生效</li>
+<li>如果所有flex items 的flex-shrink总和超过1，每个 flex item 收缩的size为 flex items超出flex container的 <strong>(size / sum)* flex-shrink</strong></li>
+<li>如果所有flex items 的flex-shrink总和小与1， 每个 flex item 收缩的size为 flex items超出flex container的size * flex-shrink会收缩不完</li>
+<li>flex items 收缩后的最终size 不能小于 min-width / min-height</li>
+</ul>
+<h2 id="5-flex-basis"><a href="#5-flex-basis" class="headerlink" title="5. flex-basis"></a>5. flex-basis</h2><ul>
+<li>设置flex items在main axis方向上的base size</li>
+<li>auto (默认值) 、具体的宽度数值 原来的宽度是多少就是多少<ul>
+<li>flex-basis: auto;</li>
+</ul>
+</li>
+<li>同时设置 width 和flex-basis flex-basis起作用<ul>
+<li>flex-basis: 200px;</li>
+<li>width: 100px;</li>
+<li>最终flex-items宽度为200px</li>
+</ul>
+</li>
+<li>决定flex items最终size（大小）因素的优先级<ul>
+<li>max-width / max-height / min-width/ min-height</li>
+<li>flex-basis</li>
+<li>width / height</li>
+<li>内容撑起的宽度，高度</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-flex"><a href="#6-flex" class="headerlink" title="6. flex"></a>6. flex</h2><ul>
+<li>flex是一个缩写属性，flex-grow || flex-shrink || flex-basis的简写，flex属性可以指定1个，2个，或3个值</li>
+<li>单值语法：值必须为以下其中一个：<ul>
+<li>一个无单位数（number类型）会被当成<strong>flex-grow</strong>的值</li>
+<li>一个有效的宽度（width）值 带单位的例如px 会被当成<strong>flex-basis</strong>的值</li>
+<li>关键字none，auto或initial</li>
+</ul>
+</li>
+<li>双值语法：<ul>
+<li>第一个值必须为无单位的值，并且第一个值会被当作<strong>flex-grow</strong>属性的值</li>
+<li>第二个值必须为以下之一：<ul>
+<li>一个无单位数会被当作<strong>flex-shrink</strong>的值</li>
+<li>一个有效宽度值，带单位的，当作<strong>flex-basis</strong>的值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>三值语法：<ul>
+<li>第一个值必须是无单位的，当作<strong>flex-grow</strong>属性的值</li>
+<li>第二个值必须是无单位的，当作<strong>flex-shrink</strong>属性的值</li>
+<li>第三个之必须是有单位的有效值，当作<strong>flex-basis</strong>属性的值</li>
+</ul>
+</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -666,12 +951,164 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             document.body.appendChild(img);
           });
       </script>
-                                </div>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力!</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.bmp" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.bmp" class="reward-img" alt="微信打赏二维码">
                     </div>
                 </div>
-                   
-                        
-                            <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="http://zhaojinwu888.github.io" class="b-link-green">赵晋伍的博客</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/09/28/flex/" class="b-link-green">grid布局</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
 <link rel="stylesheet" href="/css/my-gitalk.css">
 
 <div class="card gitalk-card" data-aos="fade-up">
@@ -686,22 +1123,22 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         repo: 'zhaojinwu888.github.io',
         owner: 'zhaojinwu888',
         admin: ["zhaojinwu888"],
-        id: 'contact/index.html',
+        id: '2019/09/28/flex/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
     gitalk.render('gitalk-container');
 </script>
-                        
-        
-                        
-        
-                        
-        
-                        
-        
-                        
-                        <style>
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
     .valine-card {
         margin: 1.5rem auto;
     }
@@ -998,10 +1435,266 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 //   }, 800)
 
 </script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/10/15/gotojs/">
+                    <div class="card-image">
                         
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="走进JS">
+                        
+                        <span class="card-title">走进JS</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            努力！
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JS部分/" class="post-category" target="_blank">
+                                    JS部分
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Hexo/" target="_blank">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                    
+                    <a href="/tags/Github/" target="_blank">
+                        <span class="chip bg-color">Github</span>
+                    </a>
+                    
+                    <a href="/tags/博客/" target="_blank">
+                        <span class="chip bg-color">博客</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/09/25/grid/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="grid布局">
+                        
+                        <span class="card-title">grid布局</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            黄昏时分无故人！
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CSS部分/" class="post-category" target="_blank">
+                                    CSS部分
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Hexo/" target="_blank">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                    
+                    <a href="/tags/Github/" target="_blank">
+                        <span class="chip bg-color">Github</span>
+                    </a>
+                    
+                    <a href="/tags/博客/" target="_blank">
+                        <span class="chip bg-color">博客</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 赵晋伍的博客<br />'
+            + '作者: 赵晋伍<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
 
     </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
 </main>
+
+
         <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">

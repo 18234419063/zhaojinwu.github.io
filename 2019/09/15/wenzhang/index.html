@@ -6,10 +6,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="留言板, Zhao Jinwu, School of software, North  University of China">
+    <meta name="keywords" content="摘选好文, Zhao Jinwu, School of software, North  University of China">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
-    <meta name="description" content="留言板 | 赵晋伍的博客">
+    <meta name="description" content="                    人生越是艰难处，越要往前多走几步表弟大鹏刚工作那段时间，总是吐槽自己的实习工作太没意思。每天都是处理一堆乱七八糟的小事和杂事，工资不高、加班不少，这让他感觉看不到未来。
+我安慰他说，与其浪费时间抱怨，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>留言板 | 赵晋伍的博客</title>
+    <title>摘选好文 | 赵晋伍的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -599,54 +600,224 @@
 
 </header>
 
-        <!-- shw2018 洪卫  modify 2019.08.15-->
-<div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                <!-- 
-                    赵晋伍的博客
-                 -->
-                
-                    留言板
-                
-            </div>
-
-            <div class="description center-align">
-                
-                    <!-- 中北大学 | 软件工程 | 前端开发 -->
-                    <span id="jinrishici-sentence">正在加载今日诗词...</span>
-                
-            </div>
-            
-            
-        </div>
-    </div>
-</div>
+        
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
-// 每天切换 banner 图.  Switch banner image every day.
-$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
 </script>
 
 
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        摘选好文
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<main class="content">
-    <div id="aboutme" class="container contact-container">
-            <div class="card">
-                    <div class="card-content">
-                            <div id="articleContent" data-aos="fade-up">
-                                    <h2 id="畅所欲言"><a href="#畅所欲言" class="headerlink" title="畅所欲言"></a>畅所欲言</h2><hr>
-<p>在这里可以留下你的足迹，欢迎在下方留言，欢迎交换友链，一起交流学习！</p>
-<h2 id="友链"><a href="#友链" class="headerlink" title="友链"></a>友链</h2><hr>
-<p>赵晋伍の友链信息</p>
-<p>博客名称: 赵晋伍の博客</p>
-<p>博客网址: <a href="https://zhaojinwu888.github.io">https://zhaojinwu888.github.io</a></p>
-<p>博客头像: <a href="http://zhaojinwu888.github.io">http://zhaojinwu888.github.io</a></p>
-<p>博客介绍: ICPC  PVer！</p>
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- shw2018 洪卫  modify 2019.08.15-->
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Hexo/" target="_blank">
+                                <span class="chip bg-color">Hexo</span>
+                            </a>
+                        
+                            <a href="/tags/Github/" target="_blank">
+                                <span class="chip bg-color">Github</span>
+                            </a>
+                        
+                            <a href="/tags/博客/" target="_blank">
+                                <span class="chip bg-color">博客</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/深度好文/" class="post-category" target="_blank">
+                                深度好文
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-09-15
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                        赵晋伍
+                    
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        1.1k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        3 分
+                    </div>
+                    
+                
+                
+                
+                        <span id="busuanzi_container_site_pv" style='display:none'></span>
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv" ></span>
+    
+                
+
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <pre><code>                    人生越是艰难处，越要往前多走几步</code></pre><p>表弟大鹏刚工作那段时间，总是吐槽自己的实习工作太没意思。每天都是处理一堆乱七八糟的小事和杂事，工资不高、加班不少，这让他感觉看不到未来。</p>
+<p>我安慰他说，与其浪费时间抱怨，不如好好总结一下自己的工作如何能更有效率，好好想想你在现在的工作中能够得到什么样的经验。又或者，你考虑考虑这份工作是否真的适合自己。一味地吐槽，于自身成长而言并无益处。只有迈开脚步往前多走几步，你才会发现，那些你以为过不去的难关都会过去。</p>
+<p>在那之后，表弟不再那么纠结了，而是认真努力地完成所有交予他的工作。半年后，他顺利转正，因为成绩突出，他申请转岗，去了自己喜欢的部门。</p>
+<p>很多时候，出现不顺心的事情时，我们容易困在不好的情绪里。带着不爽的心情工作，自然什么都做不好。其实真的静下心来面对，很多事情也没那么难了。如果碰到一点挫折就陷入负面情绪中止步不前，那才是得不偿失。</p>
+<p>遇到困难，千万别停滞不前，要勇敢迈出脚步，一步不行，就多走几步。人生就如开花结果，努力生长，丰盈自我，就不会白忙一场。</p>
+<p>我在乡下支教时曾经遇到一位大姐。大姐姓张，早些年她丈夫外出打工后便杳无音讯，家里上有婆婆，下有两个小娃，一家老小全指着她赚钱养家。于是，她去了县里的一家服装厂打工。但因为一次意外，她的右手被卷入裁断机，失去了3根手指。</p>
+<p>很多人都为她的遭遇难过，张大姐自己却是那个最快接受现实的人。打不了工，她就回了老家，开始每天去集上卖山货。后来，村里的大学生村官教她做直播卖货，她认真研究其他主播的直播技巧，学习销售方法，还苦练普通话。</p>
+<p>张大姐说，自己有时候也会难过，但人这一生只能抬头看、往前走，没有过不去的坎，不能因为难走就不走了啊，路照走、活照干、日子照过。</p>
+<p>大姐的话虽然朴实，却让我动容：对啊，人生艰难处，为什么不多走几步试试呢？世上本没有那么多圆满，各种艰难曲折的考验都真实存在着，这就是人生。俗话说，车到山前必有路。前提是，你要走到山前，才能发现路。如果远眺山峰就被吓住而退缩，那么一辈子都不可能登顶。</p>
+<p>朋友梓风是个宝妈，去年参加了考研。走出校园已七年的她，重拾书本考研，这一路的艰辛不言而喻。</p>
+<p>她说那段时间，除了吃饭睡觉就是看书刷题，枯燥又重复、孤独且煎熬。每当学习遇上瓶颈，尤其是专业术语背了又忘，那种挫败感更是铺天盖地而来。</p>
+<p>可无论上一刻是多么焦虑，冷水洗把脸后，她又开始投入到学习中。最终，顶着质疑与压力，她成功上岸，收到了目标院校的录取通知书。<br>人生在世，谁都会有艰难的时候。人生不易，得过且过太容易。但我想说的是，如果身处沙漠，更不要放弃寻找绿洲。朴素的执着往往能解开人生困境，越是难走的时候，越要坚持往前多走几步。</p>
+<p>在经历中成长，在困境中前行，人生自会渐入佳境，最终收获更好的自己。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -666,12 +837,164 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             document.body.appendChild(img);
           });
       </script>
-                                </div>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力!</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.bmp" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.bmp" class="reward-img" alt="微信打赏二维码">
                     </div>
                 </div>
-                   
-                        
-                            <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+            
+            
+            <div class="reprint1">
+                <p>
+                    <span class="reprint1-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="http://zhaojinwu888.github.io" class="b-link-green">赵晋伍的博客</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/09/15/wenzhang/" class="b-link-green">摘选好文</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
 <link rel="stylesheet" href="/css/my-gitalk.css">
 
 <div class="card gitalk-card" data-aos="fade-up">
@@ -686,22 +1009,22 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         repo: 'zhaojinwu888.github.io',
         owner: 'zhaojinwu888',
         admin: ["zhaojinwu888"],
-        id: 'contact/index.html',
+        id: '2019/09/15/wenzhang/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
     gitalk.render('gitalk-container');
 </script>
-                        
-        
-                        
-        
-                        
-        
-                        
-        
-                        
-                        <style>
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
     .valine-card {
         margin: 1.5rem auto;
     }
@@ -998,10 +1321,266 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 //   }, 800)
 
 </script>
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/09/25/grid/">
+                    <div class="card-image">
                         
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="grid布局">
+                        
+                        <span class="card-title">grid布局</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            黄昏时分无故人！
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CSS部分/" class="post-category" target="_blank">
+                                    CSS部分
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Hexo/" target="_blank">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                    
+                    <a href="/tags/Github/" target="_blank">
+                        <span class="chip bg-color">Github</span>
+                    </a>
+                    
+                    <a href="/tags/博客/" target="_blank">
+                        <span class="chip bg-color">博客</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/08/30/index/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="摘选好文">
+                        
+                        <span class="card-title">摘选好文</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            咸淡皆味，好坏均福！
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/深度好文/" class="post-category" target="_blank">
+                                    深度好文
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Hexo/" target="_blank">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                    
+                    <a href="/tags/Github/" target="_blank">
+                        <span class="chip bg-color">Github</span>
+                    </a>
+                    
+                    <a href="/tags/博客/" target="_blank">
+                        <span class="chip bg-color">博客</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 赵晋伍的博客<br />'
+            + '作者: 赵晋伍<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
 
     </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
 </main>
+
+
         <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
