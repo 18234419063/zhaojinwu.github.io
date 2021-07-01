@@ -4,6 +4,93 @@
   
     
     <entry>
+      <title>小程序API集中管理</title>
+      <link href="/2021/06/28/wechatapi/"/>
+      <url>/2021/06/28/wechatapi/</url>
+      
+        <content type="html"><![CDATA[<h1 id="小程序-API集中管理"><a href="#小程序-API集中管理" class="headerlink" title="小程序 API集中管理"></a>小程序 API集中管理</h1><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><blockquote><p>因为小程序好像不支持 es6 的 export 所以导出用 es5 的 cmd 的 module.exports</p></blockquote><ol><li>根目录下创建文件夹 http</li><li>创建基础请求文件 request.js</li><li>创建集中导出接口 api.js</li><li>创建测试接口模块 login.js goods.js</li></ol><h3 id="request-js"><a href="#request-js" class="headerlink" title="request.js"></a>request.js</h3><pre><code>const app = getApp()console.log(app)const baseUrl = 'https://www.wy1991.cn/'// 创建统一调用函数// lodingTime 请求时间超过后显示 lodingconst request = ({ url, data = {}, method = 'get', loadingTime = 500 }) =&gt; {  let timer = setTimeout(() =&gt; {    wx.showLoading({      title: '请求中...',    })  }, loadingTime)  return new Promise((resolve, reject) =&gt; {    wx.request({      url: baseUrl + url,      data,      method: method,      header: {        'content-type': 'application/x-www-form-urlencoded',        authorization: app?.globalData.token ?? 'token',      },      timeout: 15000,      success: (res) =&gt; {        //在这里写自己的逻辑，比如code 401 代表需要重新登录        //演示代码        if (res.data.code === 401) {          wx.redirectTo({            url: '/pages/logs/logs',          })          return        }        resolve(res.data)      },      fail: (err) =&gt; {        //失败的时候，可以        reject(err)      },      complete: (res) =&gt; {        clearTimeout(timer)        timer = null        wx.hideLoading({})      },    })  })}module.exports = request</code></pre><h3 id="api-js"><a href="#api-js" class="headerlink" title="api.js"></a>api.js</h3><pre><code>const login = require('./login')const goods = require('./goods')module.exports = {  login,  goods,}</code></pre><h3 id="goods-js"><a href="#goods-js" class="headerlink" title="goods.js"></a>goods.js</h3><pre><code>const request = require('./request')function getGoodsList(data) {  return request({    url: 'api/index/index',    method: 'post',    data,  })}function getGoodsInfo(data) {  return request({    url: 'api/index/sleep3',    method: 'post',    data,  })}module.exports = {  getGoodsList,  getGoodsInfo,}</code></pre><h3 id="login-js"><a href="#login-js" class="headerlink" title="login.js"></a>login.js</h3><pre><code>const request = require('./request.js')function userlogin(data) {  return request({    url: 'api/index/index',    method: 'get',    data,  })}function usersleep() {  return request({    url: 'api/index/sleep3',    method: 'get',  })}module.exports = {  userlogin,  usersleep,}</code></pre><h3 id="试用方法"><a href="#试用方法" class="headerlink" title="试用方法:"></a>试用方法:</h3><p>可以挂载到 app.js globalData 中了，当然你可以不挂载直接引用</p><p>例如：pages/index/index.js</p><pre><code>const $api = require('../../http/api')Page({  onLoad() {    //例子1:    $api.login      .userlogin({ name: '123' })      .then((res) =&gt; {        console.log(res)      })      .catch((err) =&gt; {        console.log(err)      })  },  // 也可以用async await  async click() {    let result = await $api.login()  },})</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h3><p>统一请求处理，可以在 request 中写一个函数，请求 api 接口报错可以给远程日志服务器发数据<br>具体好处自己摸索。也可以根据环境动态请求 baseUrl,还可以接口高度复用,还封装了一个请求 1 秒后加载 loding</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 小程序部分 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Github </tag>
+            
+            <tag> 博客 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vue rem适配</title>
+      <link href="/2021/05/05/vue-rem-gua-pei/"/>
+      <url>/2021/05/05/vue-rem-gua-pei/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Vue-rem适配"><a href="#Vue-rem适配" class="headerlink" title="Vue rem适配"></a>Vue rem适配</h1><h2 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h2><ol><li><p>安装 postcss-pxtorem</p><blockquote><p>npm install postcss-pxtorem -D</p></blockquote></li><li><p>在项目根目录创建 postcss.config.js 文件</p></li></ol><pre><code>module.exports = {  plugins: {    autoprefixer: {},    'postcss-pxtorem': {      rootValue: 10, //结果为：设计稿元素尺寸/10，      propList: ['*'],    },  },}</code></pre><ol><li><p>动态改变根元素的 fontSize 大小（写在 main.js 中即可）</p><p><strong>或者用淘宝 flexible 适配方案 flexible.js</strong><br>社区有一种更暴力的，直接用 <code>font-size: calc(100vw /7.5) ;</code></p></li></ol><pre><code>// 适配不同尺寸屏幕（动态计算根元素的大小fonSize）function resizeCount() {  const baseConstn = 192 // 1920的设计稿 / 基数10  const nowWidth = document.documentElement.clientWidth  const nowCount =  nowWidth / baseConstn  document.querySelector('html').style.fontSize = nowCount + 'px'}// 初始化resizeCount()window.addEventListener('resize', () =&gt; {  resizeCount()})</code></pre><ol><li>打开页面，查看 html 元素是否随窗口宽度变化而变化</li></ol><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue部分 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Github </tag>
+            
+            <tag> 博客 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>postcss px转vw</title>
+      <link href="/2021/04/21/postcss-px-zhuan-vw/"/>
+      <url>/2021/04/21/postcss-px-zhuan-vw/</url>
+      
+        <content type="html"><![CDATA[<h1 id="postcss-px-to-viewport-px转vw"><a href="#postcss-px-to-viewport-px转vw" class="headerlink" title="postcss-px-to-viewport px转vw"></a>postcss-px-to-viewport px转vw</h1><p><a href="https://blog.csdn.net/Charissa2017/article/details/105420971/">原文地址</a></p><p>移动端适配方案中，可以使用 vw 作为页面中各元素的单位，以此来完成适配效果。下面我们来讲怎样在 vue-cli 项目中使用 postcss-px-to-viewport 插件。</p><p>前言<br>先来认识一下 postcss，postcss 是一个用 JavaScript 工具和插件转换 CSS 代码的工具。<br>postcss 的作用：</p><p>兼容各个内核的浏览器，增强代码的可读性。<code>autoprefixer</code> 插件可以自动获取浏览器的流行度和能够支持的属性，并根据这些数据自动为 CSS 规则添加前缀。</p><p>解析浏览器不兼容的 css 新语法。<code>postcss-preset-env</code> 插件可以将现代 CSS 语法转换成大多数浏览器都能理解的东西。</p><p>避免全局 css 样式。通过使用<code>postcss-modules</code> ，不用担心命名太大众化而造成冲突太普通，只要用最有意义的名字就行了。</p><p>避免 css 代码中的错误。通过使用 stylelint 插件避免样式表中的错误，stylelint 是一个现代化 CSS 代码检查工具。它支持最新的 CSS 语法，包括类似 CSS 的语法，例如 SCSS 。<br>强大的网格系统。lostgrid 插件利用 calc() 和你所定义的分割方式来创建网格系统，无需传递大量参数。</p><p><code>postcss-px-to-viewport</code>，可以将 px 单位自动转换成 viewport 单位（vw 表示屏幕的 1%）。</p><ol><li><p>安装</p><blockquote><p>npm install postcss-px-to-viewport –save-dev</p></blockquote><p>或者使用 yarn 安装</p><blockquote><p>yarn add postcss-px-to-viewport -D</p></blockquote></li><li><p>配置</p><p>在 vue-cli 项目根目录下新建 vue.config.js 配置文件，在该文件中写入如下内容</p><pre><code>const pxtovw = require('postcss-px-to-viewport')module.exports = {  css: {    loaderOptions: {      sass: {        //给 sass-loader 传递选项      },      css: {        //给 css-loader 传递选项      },      postcss: {        //给 postcss-loader 传递选项        plugins: [          new pxtovw({            unitToConvert: 'px', //需要转换的单位，默认为"px"；            viewportWidth: 375, //设计稿的视口宽度            unitPrecision: 5, //单位转换后保留的小数位数            propList: ['*'], //要进行转换的属性列表,\*表示匹配所有,!表示不转换            viewportUnit: 'vw', //转换后的视口单位            fontViewportUnit: 'vw', //转换后字体使用的视口单位            selectorBlackList: [], //不进行转换的 css 选择器，继续使用原有单位            minPixelValue: 1, //设置最小的转换数值            mediaQuery: false, //设置媒体查询里的单位是否需要转换单位            replace: true, //是否直接更换属性值，而不添加备用属性            exclude: [/node_modules/], //忽略某些文件夹下的文件          }),        ],      },    },  },}</code></pre><p><strong>设置配置文件后，需要重新启动项目</strong></p><p>可能遇到的问题：</p><blockquote><p>插件会将所有样式的 px 转换成 vw，如果引入了第三方 UI，也会被转化。可以使用 selectorBlackList 属性来进行过滤。如果个别地方不想转换为 vw，可以简单的使用大写的 PX 或者 Px 或者 pX。</p></blockquote></li><li><p>效果<br>使用前：<br>npm run serve 启动项目，就可以看到项目中的单位全部转换成了 vw</p></li><li><p>配置参数详解：</p><p><code>unitToConvert</code> (String)，需要转换的单位，默认为”px”</p><p><code>viewportWidth</code> (Number)，设计稿的视口宽度</p><p><code>unitPrecision</code> (Number)，单位转换后保留的精度</p><p><code>propList</code> (Array)，能转化为 vw 的属性列表</p><p>传入特定的 CSS 属性；</p><p>可以传入通配符””去匹配所有属性，例如：[’’]；</p><p>在属性的前或后添加”_“,可以匹配特定的属性. (例如[‘position’] 会匹配<br>background-position-y)</p><p>在特定属性前加 “!”，将不转换该属性的单位 . 例如: [’_’, ‘!letter-spacing’]，将不转换 letter-spacing</p><p>“!” 和 “”可以组合使用， 例如: [’’, ‘!font*’]，将不转换 font-size 以及 font-weight 等属性<br>viewportUnit (String)，希望使用的视口单位</p><p>fontViewportUnit (String)，字体使用的视口单位</p><p>selectorBlackList (Array)，需要忽略的 CSS 选择器，不会转为视口单位，使用原有的 px 等单位。</p><p>如果传入的值为字符串的话，只要选择器中含有传入值就会被匹配</p><p>例如 selectorBlackList 为 [‘body’] 的话， 那么 .body-class 就会被忽略</p><p>如果传入的值为正则表达式的话，那么就会依据 CSS 选择器是否匹配该正则</p><p>例如 selectorBlackList 为 [/^body$/] , 那么 body 会被忽略，而 .body 不会</p><p>minPixelValue (Number)，设置最小的转换数值，如果为 1 的话，只有大于 1 的值会被转换</p><p>mediaQuery (Boolean)，媒体查询里的单位是否需要转换单位，@keyframes 和 media 里的 px 默认是不转化的，设置该属性为 true，则媒体查询里的单位会转成 vw。</p><p>replace (Boolean)，是否直接更换属性值，而不添加备用属性</p><p>exclude (Array or Regexp)，忽略某些文件夹下的文件或特定文件，例如 ‘node_modules’ 下的文件</p><p>如果值是一个正则表达式，那么匹配这个正则的文件会被忽略</p><p>如果传入的值是一个数组，那么数组里的值必须为正则</p><p>landscape (Boolean) 是否添加根据 landscapeWidth 生成的媒体查询条件 @media (orientation: landscape)</p><p>landscapeUnit (String) 横屏时使用的单位</p><p>landscapeWidth (Number) 横屏时使用的视口宽度</p></li></ol><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> CSS部分 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Github </tag>
+            
+            <tag> 博客 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>邂逅vue-cli</title>
       <link href="/2020/05/05/vue-cli/"/>
       <url>/2020/05/05/vue-cli/</url>
@@ -263,7 +350,7 @@
       <link href="/2019/09/15/wenzhang/"/>
       <url>/2019/09/15/wenzhang/</url>
       
-        <content type="html"><![CDATA[<pre><code>    人生越是艰难处，越要往前多走几步</code></pre><p>表弟大鹏刚工作那段时间，总是吐槽自己的实习工作太没意思。每天都是处理一堆乱七八糟的小事和杂事，工资不高、加班不少，这让他感觉看不到未来。</p><p>我安慰他说，与其浪费时间抱怨，不如好好总结一下自己的工作如何能更有效率，好好想想你在现在的工作中能够得到什么样的经验。又或者，你考虑考虑这份工作是否真的适合自己。一味地吐槽，于自身成长而言并无益处。只有迈开脚步往前多走几步，你才会发现，那些你以为过不去的难关都会过去。</p><p>在那之后，表弟不再那么纠结了，而是认真努力地完成所有交予他的工作。半年后，他顺利转正，因为成绩突出，他申请转岗，去了自己喜欢的部门。</p><p>很多时候，出现不顺心的事情时，我们容易困在不好的情绪里。带着不爽的心情工作，自然什么都做不好。其实真的静下心来面对，很多事情也没那么难了。如果碰到一点挫折就陷入负面情绪中止步不前，那才是得不偿失。</p><p>遇到困难，千万别停滞不前，要勇敢迈出脚步，一步不行，就多走几步。人生就如开花结果，努力生长，丰盈自我，就不会白忙一场。</p><p>我在乡下支教时曾经遇到一位大姐。大姐姓张，早些年她丈夫外出打工后便杳无音讯，家里上有婆婆，下有两个小娃，一家老小全指着她赚钱养家。于是，她去了县里的一家服装厂打工。但因为一次意外，她的右手被卷入裁断机，失去了3根手指。</p><p>很多人都为她的遭遇难过，张大姐自己却是那个最快接受现实的人。打不了工，她就回了老家，开始每天去集上卖山货。后来，村里的大学生村官教她做直播卖货，她认真研究其他主播的直播技巧，学习销售方法，还苦练普通话。</p><p>张大姐说，自己有时候也会难过，但人这一生只能抬头看、往前走，没有过不去的坎，不能因为难走就不走了啊，路照走、活照干、日子照过。</p><p>大姐的话虽然朴实，却让我动容：对啊，人生艰难处，为什么不多走几步试试呢？世上本没有那么多圆满，各种艰难曲折的考验都真实存在着，这就是人生。俗话说，车到山前必有路。前提是，你要走到山前，才能发现路。如果远眺山峰就被吓住而退缩，那么一辈子都不可能登顶。</p><p>朋友梓风是个宝妈，去年参加了考研。走出校园已七年的她，重拾书本考研，这一路的艰辛不言而喻。</p><p>她说那段时间，除了吃饭睡觉就是看书刷题，枯燥又重复、孤独且煎熬。每当学习遇上瓶颈，尤其是专业术语背了又忘，那种挫败感更是铺天盖地而来。</p><p>可无论上一刻是多么焦虑，冷水洗把脸后，她又开始投入到学习中。最终，顶着质疑与压力，她成功上岸，收到了目标院校的录取通知书。<br>人生在世，谁都会有艰难的时候。人生不易，得过且过太容易。但我想说的是，如果身处沙漠，更不要放弃寻找绿洲。朴素的执着往往能解开人生困境，越是难走的时候，越要坚持往前多走几步。</p><p>在经历中成长，在困境中前行，人生自会渐入佳境，最终收获更好的自己。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<pre><code>    人生越是艰难处，越要往前多走几步</code></pre><p>如今，张桂梅是华坪家喻户晓的老师，也被广大网友亲切的称为“燃灯校长”。这是她用12年的拼搏赢得的名师声誉，也是她12年的艰辛与忍耐的见证。</p><p>2002年，在云南儿童之家工作的张桂梅看到了很多农村贫困家庭的不幸，她希望创办一所免费女子高中，彻底解决山区贫困问题。她四处奔波筹集资金，努力了五年也才筹集到1万元。经多方努力，2008年，华坪女子高级中学成立，这是全国唯一一所免费女高，专门供贫困家庭的女孩读书。建校12年来，已有1804名大山里的女孩从这里走进大学完成学业，在各行各业做贡献。</p><p>成功的背后是常人难以想象的付出。</p><p>感动中国颁奖现场，当张桂梅走上舞台，主持人最先注意到的是张桂梅老师的手。</p><p>因为关节痛，张桂梅的手上贴满膏药。不仅如此，张桂梅还要每天吃药，早上吃十多种药，中午吃五种药……白岩松说，“大姐这是在拼命啊”。张桂梅说，“拼就拼一点吧，现在是当妈的感觉……”</p><p>张桂梅老师确实做到了，一位伟大的教师、优秀的校长、暖心的妈妈。</p><p>坚持家访，像关心自己孩子一样关怀学生</p><p>寒假开始第一天，张桂梅就开始家访，她要走访104个家庭。“安排再紧凑些，时间不够用!”她常说。华坪女高的学生，除了来自华坪县，也有来自永胜、宁蒗、玉龙等县区的孩子，大多还在偏远的村组。有的新生家，要是没有当地村干部带路，还要绕“冤枉路”。张老师身体状况不太好，但她坚持要走到每个孩子家</p><p>“12年了，这个传统不能断!我习惯了，能坚持!”张桂梅总这样说。一个月间，已走访了宁蒗、永胜、华坪三县边远乡镇村组，最远到了宁蒗县烂泥箐乡烂泥箐村，和永胜县羊坪乡水柯乐村猪场小组、羊坪乡落雪坪村阿木湾下村。路太远，有一整天，他们就只跑了羊坪乡两个女孩家。</p><p>他的同事评价她：“她现在浑身上下都痛，有时候走路还要人扶。有的东西不能用钱来衡量。她为孩子们的付出，是真的把命搭进去了。”</p><p>张桂梅每天最多睡4个多小时，5点钟就起床，是全校起床最早的人。为的是给学生们摁亮下楼梯的路灯，只因为以前有孩子在那里摔过跤。</p><p>有学生突然生病被送去医院，她就担心得整宿睡不着：“等接到老师报平安的电话，我一看天已经亮了。”</p><p>培养好每个学生 不放弃一个孩子</p><p>华坪女高存在很多单亲、孤残、重病……一些家庭特别的孩子，学校还根据实际，按300元、500元、800元等不同金额，给予生活费补助。建档立卡户子女、低保户子女、残疾学生及残疾人子女、农村一般家庭经济困难学生，都能足额享受国家资助。正因为张老师熟悉每个孩子、每个家庭，才能把工作做得够细、够透、够暖心，也服众。”</p><p>一名高一女生情绪低落，成绩下滑。张桂梅就让她和自己同住一屋，好时常开导她。原来她父母常闹矛盾，张桂梅三次到她家调解，终于让全家和好，孩子脸上有了笑容，学习也不分心了。</p><p>“我要救这个孩子!培养好一个孩子，最少可以改变三代人的命运!”张桂梅常这样告诉身边的老师，也常这样给自己鼓劲儿。</p><p>养成孩子健康习惯 树立学生生活态度</p><p>华坪女高首届共招生100人。她们大都来自山区，多数没有达到普通高中录取分数线，还有一些孤儿、残疾学生、单亲家庭学生、父母残疾的学生和下岗职工子女。但只要是女孩，只要还想上学，华坪女高都向她们敞开怀抱。三年后，她们中有96人坚持到最后参加高考，全部考上了大学。自2011年有首届毕业生以来，学校综合排名连续10年位列丽江市一区四县榜首。</p><p>华坪女高的时间是以分钟计算的:早上5分钟洗漱完毕，10分钟早读到位，出操1分钟站好队，学生出入教学楼、去食堂、回宿舍几乎都是跑着的。</p><p>张桂梅比学生起得早，一个人摸黑爬四楼，把走廊的灯全部点亮;学生跑步的时候，她就在队列边紧紧跟随;学生打扫校园时，她已经第一个来到校门口，拿着扫把和铲子等候。她还总是举着小喇叭喊:“快点儿，快点儿!别掉队!磨蹭什么?”</p><p>为什么要把学生在校时间安排得这么满、这么紧?原来，女高的作息时间与其他高中都一样，学生下了课就聚在一起玩耍聊天。可女孩们的话题总绕着家长里短、鸡毛蒜皮和那个被大山圈起来的小小世界。</p><p>必须用一个更大的世界，一种更广阔的精神，将女孩们的心灵充实起来。</p><p>华坪女高学生普遍入学基础差，高中不仅要学新知识，还要补之前落下的课;更重要的是，必须让她们知道什么是文明，什么是先进，什么又是现代化。用三年时间完成这一切，不多付出一些、不严厉一些能行吗?</p><p>于是，张桂梅不得不化身“爱骂人的张校长”。10分钟早读到位，5分钟打扫校园，她用一个个严苛到分秒的要求，改变着这些女孩的生活习惯和生活态度。</p><p>不占用孩子艺术课时间 丰富学生精神世界</p><p>华坪女高的学习生活时间安排得再紧张，也从不占用音乐课，与一般高中相比，学生唱歌、跳舞的时间还要多很多。</p><p>每天上午10点，是女高雷打不动的红色课间操时间。20分钟里，孩子们先集体背诵《七绝·为女民兵题照》，再唱跳《红色娘子军》等革命歌曲编成的健身舞。2020年，张桂梅听说城里的孩子都在跳“鬼步舞”，也让女高的学生学着跳:“‘鬼步舞’有一个好处就是快，‘快’对她们有帮助，可以提精神”。</p><p>回忆起在女高唱过的歌，华坪女高首届毕业生黄付燕说:“那时候日子是苦的，精神是满的。”</p><p>女高的学生不留长发，不打扮，她们却总能让张桂梅感到美，感到骄傲。“这个社会里，男女是平等的，女人不是靠妖娆来过日子的，我们要凭着自己的本事和本领过生活。我不希望她们打扮得花枝招展，我希望她们能在庄严中透露出一种美，一种精气神。”张桂梅说。</p><p>世界以它的痛苦吻我，却要我回报以歌声。来自泰戈尔诗集《飞鸟集》，愿张桂梅老师与他的学生们一起越飞越远。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
       <categories>
