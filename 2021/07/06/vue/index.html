@@ -6,14 +6,17 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ZhaoJinWuuuu, Zhao Jinwu, School of software, North  University of China">
+    <meta name="keywords" content="全家桶, Zhao Jinwu, School of software, North  University of China">
     <meta name="baidu-site-verification" content="fmlEuI34ir" />
     <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY" />
-    <meta name="description" content="
-修改了原主题的一些很多bug   2019.08.05
-加入图片懒加载功能，在根目录配置文件开启和关闭    2019.08.09
-增加留言板功能          2019.08.05
-在关于板块,加入简历功能页   2019.08.0">
+    <meta name="description" content="VueVue全家桶 Core+ Vue-router +Vuex
+什么是MVVM？model viewmodel   view
+
+
+
+
+arrayMethods  改写数组原型方法
+this.observeArray(value)  深度观">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +24,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>ZhaoJinWuuuu | 赵晋伍Blog</title>
+    <title>全家桶 | 赵晋伍Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -620,13 +623,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        ZhaoJinWuuuu
+                        全家桶
                     </div>
                 </div>
             </div>
@@ -758,8 +761,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" class="post-category" target="_blank">
-                                初来乍到
+                            <a href="/categories/Vue%E9%83%A8%E5%88%86/" class="post-category" target="_blank">
+                                Vue部分
                             </a>
                         
                     </div>
@@ -770,7 +773,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-27
+                    2021-07-06
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -784,14 +787,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        507
+                        790
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -808,30 +811,43 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <ul>
-<li>修改了原主题的一些很多<code>bug</code>   2019.08.05</li>
-<li>加入图片懒加载功能，在根目录配置文件开启和关闭    2019.08.09</li>
-<li>增加<code>留言板</code>功能          2019.08.05</li>
-<li>在关于板块,加入<code>简历</code>功能页   2019.08.05</li>
-<li>增加视听[视觉听觉影音]板块       2019.08.10</li>
-<li>支持<code>emoji</code>表情，用<code>markdown emoji</code>语法书写直接生成对应的能<strong>跳跃</strong>的表情。  2019.08.10</li>
-<li>增加网站运行时间显示  2019.08.10</li>
-<li>增加<code>动漫模型</code>     2019.08.10</li>
-<li>整体替换Banner图片和文章特色图片   2019.08.10</li>
-<li>增加分类<code>相册</code>功能         2019.08.29</li>
-<li>去掉标签页,将其合并至<code>分类</code>页中                2019.09.01</li>
-<li>修改了一些控件的参数   2019.09.01</li>
-<li>修改部分样式,比如: 文章卡片,固定高度,使其不至于因为文章摘要的长短不同导致卡片大小不一使页面布局很不美观,类似的还有友链卡片,优化了页面内容布局,视觉更整齐美观          2019.09.01</li>
-<li>解决首页文章列表卡片上方 <code>border-radius</code>圆角失效的bug  2019.09.01</li>
-<li>添加页面樱花飘落动效            2019.09.09</li>
-<li>添加鼠标点击烟花爆炸动效   2019.09.09</li>
-<li>加入天气接口控件   2019.09.09</li>
-<li>加入鼠标点击文字特效   2019.09.10</li>
-<li>添加页面雪花飘落动效            2019.09.10</li>
-<li>添加在线聊天插件            2019.09.12</li>
-<li>持续更新…</li>
-</ul>
-<hr>
+                <h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><p>Vue全家桶 Core+ Vue-router +Vuex</p>
+<h2 id="什么是MVVM？"><a href="#什么是MVVM？" class="headerlink" title="什么是MVVM？"></a>什么是MVVM？</h2><p>model viewmodel   view</p>
+<img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20210324094519408.png" alt="image-20210324094519408" style="zoom: 80%;">
+
+<img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20210324094550971.png" alt="image-20210324094550971" style="zoom:80%;">
+
+<p>arrayMethods  改写数组原型方法</p>
+<p>this.observeArray(value)  深度观察数组中的每一项</p>
+<p>this.walk(value)  重新定义对象类型数据</p>
+<p>push unshift splice 帮助更新数组</p>
+<p>if (hasOwn(value, ‘<em>ob</em>‘))&amp;&amp;value.ob indstanceof Observer){  //不会重复监听</p>
+<p>​    ob = value.b</p>
+<p>}</p>
+<h2 id="为何Vue采用异步渲染？"><a href="#为何Vue采用异步渲染？" class="headerlink" title="为何Vue采用异步渲染？"></a>为何Vue采用异步渲染？</h2><p>因为如果不采用异步更新，那么每次更新数据都会对当前组件进行重新渲染，为了性能考虑，vue会在本轮数据更新后，再去异步更新视图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210329100121037.png" alt="image-20210329100121037"></p>
+<p>vue是组件级更新  this.a=1 this.b=2</p>
+<h2 id="nextTick-实现原理"><a href="#nextTick-实现原理" class="headerlink" title="nextTick 实现原理"></a>nextTick 实现原理</h2><p>nextTick 方法主要是使用了 宏任务 和 微任务  定义了一个异步方法，多次调用 nextTick 会将方法存入队列中，通过这个异步方法 清空当前队列</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210329101339227.png" alt="image-20210329101339227"></p>
+<h2 id="Vue中Computed的特点"><a href="#Vue中Computed的特点" class="headerlink" title="Vue中Computed的特点"></a>Vue中Computed的特点</h2><p> 默认 computed 也是一个watcher 是具备缓存的，只要当依赖的属性发生变化是才会更新视图</p>
+<p>computed 和 watch 里面都是使用 watcher  不同的是computed具备缓存的功能</p>
+<p>method 区别</p>
+<img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20210329101756007.png" alt="image-20210329101756007" style="zoom:80%;">
+
+<p>pushTarget(this)  //将watcher 放到全局上</p>
+<h2 id="watch中的deep：true如何实现的"><a href="#watch中的deep：true如何实现的" class="headerlink" title="watch中的deep：true如何实现的"></a>watch中的deep：true如何实现的</h2><p>利用了递归 对每一个对象都进行取值  当用户指定了watch中的deep属性为true时，如果当前监控的值是数组类型，会对对象中的每一项进行求值，此时会将watcher存入到对应属性的依赖中，这样数组中对象发生变化时 也会通知数据更新</p>
+<h2 id="Vue组件的生命周期"><a href="#Vue组件的生命周期" class="headerlink" title="Vue组件的生命周期"></a><strong>Vue组件的生命周期</strong></h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210329103253778.png" alt="image-20210329103253778"></h2><p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210329103328348.png" alt="image-20210329103328348"></p>
+<h2 id="ajax请求放在哪个生命周期中"><a href="#ajax请求放在哪个生命周期中" class="headerlink" title="ajax请求放在哪个生命周期中"></a>ajax请求放在哪个生命周期中</h2><p>在created的时候，视图中的dom并没有渲染出来，所以此时如果直接去操作 dom 节点，无法找到相关的元素</p>
+<p>在mounted 中，由于此时 dom 已经渲染出来了，所以可以直接操作 dom 节点</p>
+<p>一般情况下都放到 mounted 中，保证逻辑的统一性， 因为生命周期是同步执行的， ajax 是异步执行的</p>
+<p>服务端渲染不支持 mounted（）方法   所以 在服务端渲染的情况下 统一放到 created中</p>
+<h2 id="何时需要使用beforeDestroy"><a href="#何时需要使用beforeDestroy" class="headerlink" title="何时需要使用beforeDestroy"></a>何时需要使用beforeDestroy</h2><p>可能在当前页面中使用了$on 方法，那需要在组件销毁前解绑</p>
+<p>清除自己定义的定时器</p>
+<p>解除事件的绑定 scroll mousemove</p>
+<h2 id="Vue中把模板转换成函数"><a href="#Vue中把模板转换成函数" class="headerlink" title="Vue中把模板转换成函数"></a>Vue中把模板转换成函数</h2><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20210329104640651.png" alt="image-20210329104640651" style="zoom: 67%;">
+
+<h2 id="Vue中-v-if-和-v-show-的区别"><a href="#Vue中-v-if-和-v-show-的区别" class="headerlink" title="Vue中 v-if 和 v-show 的区别"></a>Vue中 v-if 和 v-show 的区别</h2><p>v-if 如果条件不成立不会渲染当前指令所在节点的 dom 元素</p>
+<p>v-show 只是切换当前dom的显示或者隐藏</p>
 <blockquote>
 <p><strong>最后，如果项目和教程对你有所帮助或者你看见了还算比较喜欢，欢迎给我<code>star</code>，谢谢您！</strong></p>
 </blockquote>
@@ -1004,7 +1020,7 @@
                     </span>
                     <a href="http://zhaojinwu888.github.io" class="b-link-green">赵晋伍Blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/08/27/blog-open-source/" class="b-link-green">ZhaoJinWuuuu</a>
+                    <a href="/2021/07/06/vue/" class="b-link-green">全家桶</a>
                 </p>
             </div>
 
@@ -1027,7 +1043,7 @@
         repo: 'zhaojinwu888.github.io',
         owner: 'zhaojinwu888',
         admin: ["zhaojinwu888"],
-        id: '2019/08/27/blog-open-source/',
+        id: '2021/07/06/vue/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1346,41 +1362,43 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/08/30/index/">
+                <a href="/2021/07/06/vue/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="摘选好文">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="全家桶">
                         
-                        <span class="card-title">摘选好文</span>
+                        <span class="card-title">全家桶</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            咸淡皆味，好坏均福！
+                            自律自由！
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%A5%BD%E6%96%87/" class="post-category" target="_blank">
-                                    深度好文
+                            <a href="/categories/Vue%E9%83%A8%E5%88%86/" class="post-category" target="_blank">
+                                    Vue部分
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1404,41 +1422,40 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/27/blog-open-source/">
+                <a href="/2021/07/04/http-xie-yi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="ZhaoJinWuuuu">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="大话Http">
                         
-                        <span class="card-title">ZhaoJinWuuuu</span>
+                        <span class="card-title">大话Http</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            祝我们都好在未来！
+                            皆要好运！
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/" class="post-category" target="_blank">
-                                    初来乍到
+                            <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%83%A8%E5%88%86/" class="post-category" target="_blank">
+                                    小程序部分
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
